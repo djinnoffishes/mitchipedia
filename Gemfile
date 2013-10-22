@@ -50,6 +50,9 @@ end
 # authentication tools
 gem 'devise'
 
+# for managing erb files better
+gem 'slim'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

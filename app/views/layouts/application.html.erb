@@ -13,16 +13,19 @@
         <ul class="nav nav-pills pull-right">
           <!-- needs conditional -->
           <% if current_user %>
-            Hello <%= current_user.name %>
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "About", about_path %></li>
+            <li> <%= link_to edit_user_registration_path, class: 'glyphicon glyphicon-user' do %> 
+            <% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-share-alt' do %> 
+            <% end %></li>
           <% else %>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
           <% end %>
         </ul>
-      <h3 class="text-muted">Wix</h3>
+      <h3><%= link_to "Wix", root_path, :class => "text-muted" %></h3>
       </div>
 
       <% if flash[:notice] %>
@@ -41,14 +44,11 @@
           <%= flash[:alert] %>
         </div>
       <% end %>
-
-      <div class="jumbotron">
-
-        <%= yield %>
-      
+      <div class="content">
+      <%= yield %>
       </div>
     
-    <div class="footer">
+    <br /><div class="footer">
       <p>No copyright</p>
     </div>
 

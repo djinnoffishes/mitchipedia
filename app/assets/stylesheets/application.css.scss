@@ -16,4 +16,22 @@
   max-width: 730px;
 }
 
+.content {
+  display: none;
+}
+
+.form-auth {
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+
 @import "twitter/bootstrap";

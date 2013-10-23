@@ -33,5 +33,11 @@
   text-align: center;
 }
 
+.text-muted {
+  &:active, &:hover {
+  text-decoration: none;
+}
+}
+
 
 @import "twitter/bootstrap";

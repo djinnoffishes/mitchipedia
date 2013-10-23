@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates :password, presence: true, exclusion: {in: ["Password"],
+    message: "must be changed." }
+  validates :name, presence: true
 end

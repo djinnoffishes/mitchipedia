@@ -22,8 +22,8 @@
       <%= f.password_field :current_password, :class => "form-control" %>
     </div>
 
-    <br />
-    <div><%= f.submit "Update", :class => "btn btn-lg btn-primary btn-block" %></div>
+    <br /><div>
+    <%= f.submit "Update", :class => "btn btn-lg btn-primary btn-block" %></div>
   <% end %>
 
   <br /><%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-lg btn-danger btn-block" %>

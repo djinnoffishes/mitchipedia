@@ -3,9 +3,10 @@ class CreateWikis < ActiveRecord::Migration
     create_table :wikis do |t|
       t.string :title
       t.boolean :public
-      t.integer :user_id
+      t.integer :owner_id
 
       t.timestamps
     end
+    add_index :wikis, :owner_id
   end
 end

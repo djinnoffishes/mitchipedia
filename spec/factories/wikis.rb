@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :wiki do
     title "MyString"
     public false
-    user_id 1
+    owner_id 1
   end
 end

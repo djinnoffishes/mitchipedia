@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, exclusion: {in: ["Password"],
     message: "must be changed." }
   validates :name, presence: true
-  has_many :wikis
+  has_and_belongs_to_many :wikis
 
   ROLES = %w[member admin]
   def role?(base_role)

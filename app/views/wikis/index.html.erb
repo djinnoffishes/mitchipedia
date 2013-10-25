@@ -1,0 +1,26 @@
+
+<h2>My wix</h2>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Created</th>
+    <th>Public</th>
+  </tr>
+  <% @wikis.each do |wiki| %>
+    <tr>
+      <td><%= link_to wiki.title, wiki %></td>
+      <td><%= wiki.created_at.to_date %></td>
+      <td>
+        <% if wiki.public %><span class="glyphicon glyphicon-eye-open"></span>
+        <% else %><span class="glyphicon glyphicon-eye-close"></span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% if can? :create, Wiki %>
+  <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success btn-large' %><br />
+<% end %>
+<br />
+<%= will_paginate @wikis, renderer: BootstrapPagination::Rails, bootstrap: 3 %>

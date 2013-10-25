@@ -1,0 +1,22 @@
+
+<div class="wiki-nav">
+  <div class="btn-group btn-group-justified">
+    <ul class="dropdown-menu">
+      <li><a href="#">Contacts</a></li>
+      <li><a href="#">Infrastructure</a></li>
+    </ul>  
+  </div>
+</div>
+
+
+<h2><%= @wiki.title %></h2>
+<div class="wiki-links">
+  <!--TODO: add permissions check for edit -->
+  <span><%= link_to edit_wiki_path, class: 'glyphicon glyphicon-edit', alt: "Edit page" do %>
+  <% end %></span><br /><br />
+  <span><%= link_to new_wiki_path, class: 'glyphicon glyphicon-file', alt: "New page" do %>
+  <% end %></span><br /><br />
+  <span><%= link_to manage_wiki_path, class: 'glyphicon glyphicon-wrench', alt: "Wiki Settings" do %>
+  <% end %></span><br /><br />
+</div>
+<%= markdown(@wiki.description) %>

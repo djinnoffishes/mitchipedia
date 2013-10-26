@@ -12,7 +12,7 @@ class WikisController < ApplicationController
   def create
     @wiki = current_user.wikis.build(wiki_params)
 
-    authorize! :create, @wiki, message: "You must be signed in to do that."
+    authorize! :create, Wiki, message: "You must be signed in to do that."
 
     if @wiki.save
       flash[:notice] = "Wiki created."
@@ -36,7 +36,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
 
-    authorize! :update, @wiki, message: "You don't have permission to update this wiki."
+    authorize! :update, Wiki, message: "You don't have permission to update this wiki."
 
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki updated."
@@ -54,6 +54,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :description, :public)
+    params.require(:wiki).permit(:title, :description, :public, :user_id)
   end
 end

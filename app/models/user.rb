@@ -10,7 +10,14 @@ class User < ActiveRecord::Base
   validates :password, exclusion: {in: ["Password"],
     message: "must be changed." }
   validates :name, presence: true
-  has_and_belongs_to_many :wikis
+  
+  has_many :collaborators
+  has_many :wiki_memberships, through: :collaborators, class_name: "Wiki", source: :wiki
+  has_many :wiki_ownerships, foreign_key: :owner_id, class_name: "Wiki"
+
+  def wikis
+    wiki_ownerships + wiki_memberships
+  end
 
   ROLES = %w[member admin]
   def role?(base_role)

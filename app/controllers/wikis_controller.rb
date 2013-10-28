@@ -10,7 +10,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = current_user.wikis.build(wiki_params.merge( owner_id: current_user.id ))
+    @wiki = current_user.wiki_ownerships.build(wiki_params.merge( owner_id: current_user.id ))
 
     authorize! :create, Wiki, message: "You must be signed in to do that."
 

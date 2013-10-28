@@ -1,5 +1,6 @@
 class Wiki < ActiveRecord::Base
-  has_and_belongs_to_many :collaborators, class_name: User
   belongs_to :owner, class_name: User
+  has_many :collaborators
+  has_many :users, through: :collaborators
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) }
 end

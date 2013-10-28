@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :password, presence: true, exclusion: {in: ["Password"],
+  validates :password, exclusion: {in: ["Password"],
     message: "must be changed." }
   validates :name, presence: true
   has_and_belongs_to_many :wikis

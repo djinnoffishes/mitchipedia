@@ -1,4 +1,5 @@
 == Wix
 
 1. git clone https://github.com/myarchin/mitchipedia.git
-2. rake db:migrate
+2. bundle install
+3. rake db:migrate

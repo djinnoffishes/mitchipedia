@@ -1,3 +1,8 @@
-
-<h2>Magage wiki</h2>
-TBD
+<h2>Magage users</h2>
+  <% @collaborators.each do |c| %>
+    <tr>
+      <td><%= @owner.name %></td>
+      <td><%=  %></td>
+      <td></td>
+    </tr>
+  <% end %>

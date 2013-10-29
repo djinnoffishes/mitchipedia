@@ -36,6 +36,7 @@ GEM
     arel (4.0.0)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    breadcrumbs_on_rails (2.3.0)
     builder (3.1.4)
     cancan (1.6.10)
     celluloid (0.15.2)
@@ -187,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
+  breadcrumbs_on_rails
   cancan
   coffee-rails (~> 4.0.0)
   database_cleaner

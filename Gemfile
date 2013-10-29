@@ -60,6 +60,9 @@ gem 'redcarpet'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+# for breadcrumbs
+gem "breadcrumbs_on_rails"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

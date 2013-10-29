@@ -1,7 +1,9 @@
 class WikisController < ApplicationController
+
   def index
     # TODO: scope to visible_to current user
     @wikis = Wiki.visible_to(current_user).paginate(page: params[:page], per_page: 7)
+    add_breadcrumb "My wix", :wikis_path
   end
 
   def new
@@ -26,11 +28,16 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     # set an instance variable for all pages visible to the current user
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, :wiki_path
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
     # authorization - must be able to edit specified wiki
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, :wiki_path
+    add_breadcrumb "Edit", :edit_wiki_path
   end
 
   def update
@@ -51,6 +58,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @collaborators = @wiki.collaborators
     @owner = User.find(@wiki.owner_id)
+
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, :wiki_path
+    add_breadcrumb "Management", :manage_wiki_path
   end
 
   private

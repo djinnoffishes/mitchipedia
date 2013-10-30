@@ -8,7 +8,8 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    # authorization - must be able to create wikis
+  
+    authorize! :create, Wiki, message: "You must be signed in to do that."
   end
 
   def create

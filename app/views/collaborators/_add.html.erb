@@ -1,0 +1,5 @@
+<%= form_for [wiki, collaborator], html: { class: "form-horizontal" } do |f| %>
+  <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+  <%= f.submit "Save", class: 'btn btn-primary btn-sm' %>
+  <%= link_to "Cancel", :back %>
+<% end %>

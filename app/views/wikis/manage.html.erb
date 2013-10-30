@@ -1,5 +1,5 @@
 <%= render_breadcrumbs %>
-<h2>Magage users</h2>
+<h2>Manage users</h2>
 <table class="table">
   <tr>
     <th>Name</th>
@@ -14,23 +14,28 @@
     <td>N/A</td>
   </tr>
   <% @collaborators.each do |c| %>
-    <tr>
-      <td>c.name</td>
-      <td>c.email</td>
-      <td>
-        <div class="btn-group">
-          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-            Owner <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Read only</a></li>
-            <li><a href="#">Read and write</a></li>
-            <li><a href="#">Make owner</a></li>
-          </ul>
-        </div>
-      </td>
-      <td><span class="glyphicon glyphicon-ban-circle"></span></td>
-    </tr>
+    <% if c.nil? %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.email %></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+              Access <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Viewer</a></li>
+              <li><a href="#">Editor</a></li>
+            </ul>
+          </div>
+        </td>
+        <td><span class="glyphicon glyphicon-ban-circle"></span></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
-<%= link_to "Add Collaborator", "#", class: 'btn btn-success btn-large' %><br />
+<%= link_to "Add Collaborator", "#", class: 'btn btn-success btn-large' %><br /><br />
+<%= button_to "Delete this wiki", @wiki, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-large" %>
+<div class="">
+  <%= render partial: 'collaborators/add', locals: {wiki: @wiki, collaborator: @collaborator, email: @email} %>
+</div>

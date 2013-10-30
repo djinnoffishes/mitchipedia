@@ -58,10 +58,28 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @collaborators = @wiki.collaborators
     @owner = User.find(@wiki.owner_id)
+    
+    @collaborator = @collaborators.new
+
+    authorize! :manage, @wiki, message: "You must be the wiki owner to do that."
 
     add_breadcrumb "My wix", :wikis_path
     add_breadcrumb @wiki.title, :wiki_path
     add_breadcrumb "Management", :manage_wiki_path
+  end
+
+  def destroy
+    @wiki = Wiki.find(params[:id])
+
+    authorize! :destroy, @wiki, message: "You must be the wiki owner to do that."
+
+    if @wiki.destroy
+      flash[:notice] = "Wiki was deleted successfully."
+      redirect_to wikis_path
+    else
+      flash[:error] = "There was an error deleting the wiki."
+      render :manage
+    end
   end
 
   private

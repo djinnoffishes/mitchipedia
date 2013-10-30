@@ -53,8 +53,9 @@ gem 'slim'
 # for managing roles and permissions
 gem 'cancan'
 
-# for markdown syntax
+# for markdown syntax and editing
 gem 'redcarpet'
+gem 'rails-bootstrap-markdown'
 
 # for pagination
 gem 'will_paginate'

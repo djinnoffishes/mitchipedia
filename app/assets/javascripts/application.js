@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
+//= require bootstrap-markdown
 //= require_tree .
 
 $(document).on("page:load ready",function(){

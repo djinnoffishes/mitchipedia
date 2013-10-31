@@ -7,8 +7,11 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id])
     @collaborators = @wiki.collaborators
 
-    user_id = User.find_by_email(params[:collaborator][:email]).id
-    @collaborator = @wiki.collaborators.build(user_id: user_id)
+    begin
+      @collaborator = @wiki.collaborators.build user: User.find_by_email(params[:collaborator][:email])
+    rescue ActiveRecord::NotFound
+      return collaborator_error!
+    end
 
     authorize! :manage, @wiki, message: "You must be the wiki owner to do that."
 
@@ -16,8 +19,7 @@ class CollaboratorsController < ApplicationController
       flash[:notice] = "Collaborator added."
       redirect_to wikis_path
     else
-      flash[:error] = "There was an issue adding the collaborator."
-      redirect_to wikis_path
+      return collaborator_error!
     end
   end
 
@@ -25,6 +27,11 @@ class CollaboratorsController < ApplicationController
   end
 
   private
+
+    def collaborator_error!
+      flash[:error] = "There was an issue adding the collaborator."
+      redirect_to defined?(@wiki) ? manage_wiki_path(@wiki) : wikis_path
+    end
 
   # def collab_params
   #   params.require(:collaborator).permit(:id, :user_id, :wiki_id, :email)

@@ -8,7 +8,7 @@ class CollaboratorsController < ApplicationController
     @collaborators = @wiki.collaborators
 
     begin
-      @user = User.find_by_email(params[:collaborator][:email])
+      @collaborator = @wiki.collaborators.build user: User.find_by_email(params[:collaborator][:email])
     rescue ActiveRecord::NotFound
       return collaborator_error!
     end

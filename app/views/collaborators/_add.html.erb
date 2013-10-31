@@ -1,5 +1,24 @@
-<%= form_for [wiki, collaborator], html: { class: "form-horizontal" } do |f| %>
-  <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
-  <%= f.submit "Save", class: 'btn btn-primary btn-sm' %>
-  <%= link_to "Cancel", :back %>
+<%= form_for [wiki, collaborator], html: { class: "form-inline" } do |f| %>
+  <% if collaborator.errors.any? %>
+    <div class="form-group has-error">
+      <%= f.email_field :email, 
+        class: "form-control", 
+        id: "collab", 
+        placeholder: "Email", 
+        required: true, 
+        autofocus: true 
+      %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.email_field :email, 
+        class: "form-control", 
+        id: "collab", 
+        required: true, 
+        placeholder: "Email" 
+      %>
+    </div>
+  <% end %>
+    <%= f.submit "Add", class: 'btn btn-primary btn-sm' %>
+    <%= link_to "Cancel", "#", class: "js-cancel-add-collaborator" %>
 <% end %>

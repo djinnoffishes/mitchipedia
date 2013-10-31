@@ -17,6 +17,16 @@
 //= require bootstrap-markdown
 //= require_tree .
 
-$(document).on("page:load ready",function(){
+$(document).on("page:load ready",function() {
   $(".content").fadeIn();
+  $(".js-add-collaborator-link").click(function() {
+    $(".js-add-collaborator-form").fadeIn();
+    $(this).hide()
+    return false;
+  });
+  $(".js-cancel-add-collaborator").click(function() {
+    $(".js-add-collaborator-form").fadeOut('fast', function() {
+      $(".js-add-collaborator-link").fadeIn()});
+    return false;
+  });
 });

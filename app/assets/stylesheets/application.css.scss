@@ -14,7 +14,7 @@
  */
 
 .container {
-  max-width: 730px;
+  max-width: 920px;
 }
 
 .content {
@@ -49,6 +49,15 @@
 
 .edit-link {
   float:right
+}
+
+.js-add-collaborator-form {
+  display: none;
+}
+
+#collab {
+  width: 200px;
+  margin-right: 3px;
 }
 
 @import "twitter/bootstrap";

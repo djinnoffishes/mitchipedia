@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :password, exclusion: {in: ["Password"],
     message: "must be changed." }
   validates :name, presence: true
+  validates :email, presence: true
   
   has_many :collaborators
   has_many :wiki_memberships, through: :collaborators, class_name: "Wiki", source: :wiki

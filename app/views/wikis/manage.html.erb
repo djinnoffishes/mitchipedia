@@ -1,5 +1,5 @@
 <%= render_breadcrumbs %>
-<h2>Manage users</h2>
+<h2>Manage collaborators</h2>
 <table class="table">
   <tr>
     <th>Name</th>
@@ -14,7 +14,7 @@
     <td>N/A</td>
   </tr>
   <% @collaborators.each do |c| %>
-    <% if c.nil? %>
+    <% if c.email.nil? == false %>
       <tr>
         <td><%= c.name %></td>
         <td><%= c.email %></td>
@@ -34,8 +34,8 @@
     <% end %>
   <% end %>
 </table>
-<%= link_to "Add Collaborator", "#", class: 'btn btn-success btn-large' %><br /><br />
-<%= button_to "Delete this wiki", @wiki, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-large" %>
-<div class="">
+<div class="js-add-collaborator-form">
   <%= render partial: 'collaborators/add', locals: {wiki: @wiki, collaborator: @collaborator, email: @email} %>
 </div>
+<%= link_to "Add Collaborator", "#", class: 'js-add-collaborator-link', data: {selector: "js-add-collaborator"} %><br /><br />
+<%= button_to "Delete this wiki", @wiki, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-large" %>

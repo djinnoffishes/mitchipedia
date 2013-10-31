@@ -12,8 +12,6 @@ class CollaboratorsController < ApplicationController
     rescue ActiveRecord::NotFound
       return collaborator_error!
     end
-      
-    @collaborator = @wiki.collaborators.build user: @user
 
     authorize! :manage, @wiki, message: "You must be the wiki owner to do that."
 

@@ -3,7 +3,7 @@ Mitchipedia::Application.routes.draw do
   devise_for :users
 
   resources :wikis do
-    resources :collaborators
+    resources :collaborators, except: [:index]
   end
   get "wikis/:id/manage", to: "wikis#manage", as: "manage_wiki"
 

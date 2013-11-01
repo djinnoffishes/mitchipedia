@@ -1,3 +1,3 @@
-<%= render_breadcrumbs %>
+<%= render_breadcrumbs :separator => ' / ' %>
 <h2><%= @wiki.title %></h2>
 <%= render partial: 'form', locals: {wiki: @wiki} %>

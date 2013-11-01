@@ -1,4 +1,4 @@
-<%= render_breadcrumbs %>
+<%= render_breadcrumbs :separator => ' / ' %>
 <h2>Manage collaborators</h2>
 <table class="table">
   <tr>
@@ -29,7 +29,11 @@
             </ul>
           </div>
         </td>
-        <td><span class="glyphicon glyphicon-ban-circle"></span></td>
+        <td><%= link_to "delete", 
+          wiki_collaborator_path(@wiki, c), 
+          class: "glyphicon glyphicon-ban-circle", 
+          method: :delete, 
+          confirm: "Are you sure you want to remove this collaborator?" %></td>
       </tr>
     <% end %>
   <% end %>

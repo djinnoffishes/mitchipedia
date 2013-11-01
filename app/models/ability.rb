@@ -8,9 +8,9 @@ class Ability
     # member - can create/manage their own wikis and pages
     if user.role? :member
       can :manage, Wiki, owner_id: user.id
-      # TODO -- parmission to manage pages if permitted
-      # TODO -- parmission to read pages if permitted
-      # TODO -- parmission to read public
+      # can :edit, Wiki do |w|
+      #   w.collaborators.find_by_user_id == user.id
+      # end
     # admin - can manage all wikis and all pages
     elsif user.role? :admin
       can :manage, :all

@@ -34,8 +34,10 @@ class WikisController < ApplicationController
   end
 
   def edit
+    authorize! :edit, Wiki, message: "You must be a collaborator to edit this wiki."
+
     @wiki = Wiki.find(params[:id])
-    # authorization - must be able to edit specified wiki
+    
     add_breadcrumb "My wix", :wikis_path
     add_breadcrumb @wiki.title, :wiki_path
     add_breadcrumb "Edit", :edit_wiki_path

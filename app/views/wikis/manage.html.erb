@@ -21,11 +21,11 @@
         <td>
           <div class="btn-group">
             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-              Access <span class="caret"></span>
+              <%= c.access_level == 1 ? "Viewer" : "Editor" %> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Viewer</a></li>
-              <li><a href="#">Editor</a></li>
+              <li><%= link_to "Editor", wiki_collaborator_make_editor_path(@wiki, c), method: :patch %></li>
+              <li><%= link_to "Viewer", wiki_collaborator_make_viewer_path(@wiki, c), method: :patch %></li>
             </ul>
           </div>
         </td>

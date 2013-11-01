@@ -28,7 +28,9 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    # set an instance variable for all pages visible to the current user
+    
+    authorize! :read, Wiki, message: "You don't have permission to do that."
+
     add_breadcrumb "My wix", :wikis_path
     add_breadcrumb @wiki.title, :wiki_path
   end

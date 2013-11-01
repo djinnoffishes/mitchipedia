@@ -1,7 +1,28 @@
 class CollaboratorsController < ApplicationController
   before_filter :store_requested_path
 
-  def edit
+  def make_editor
+    @collaborator = Collaborator.find(params[:collaborator_id])
+
+    if @collaborator.update_attribute(:access_level, 2)
+      flash[:notice] = "Collaborator access level changed."
+      redirect_to wikis_path
+    else
+      flash[:error] = "There was an error changing the access. Try again."
+      redirect_to wikis_path
+    end
+  end
+
+  def make_viewer
+    @collaborator = Collaborator.find(params[:collaborator_id])
+
+    if @collaborator.update_attribute(:access_level, 1)
+      flash[:notice] = "Collaborator access level changed."
+      redirect_to wikis_path
+    else
+      flash[:error] = "There was an error changing the access. Try again."
+      redirect_to wikis_path
+    end
   end
 
   def create
@@ -19,6 +40,7 @@ class CollaboratorsController < ApplicationController
     authorize! :manage, @wiki, message: "You must be the wiki owner to do that."
 
     if @collaborator.save
+      @collaborator.update_attribute(:access_level, 1)
       flash[:notice] = "Collaborator added."
       redirect_to wikis_path
     else
@@ -29,6 +51,8 @@ class CollaboratorsController < ApplicationController
 
   def destroy
     @collaborator = Collaborator.find(params[:id])
+
+    @collaborator.update_attribute(:access_level, 0)
 
     if @collaborator.destroy
       flash[:notice] = "Collaborator was removed."

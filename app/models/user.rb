@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :collaborators
   has_many :wiki_memberships, through: :collaborators, class_name: "Wiki", source: :wiki
   has_many :wiki_ownerships, foreign_key: :owner_id, class_name: "Wiki"
+  has_many :pages
 
   def wikis
     wiki_ownerships + wiki_memberships

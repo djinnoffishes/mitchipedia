@@ -23,11 +23,10 @@ group :assets do
 end
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '>= 3.2'
 
 # bootstrap
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

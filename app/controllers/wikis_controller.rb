@@ -36,7 +36,7 @@ class WikisController < ApplicationController
   end
 
   def edit
-    authorize! :edit, Wiki, message: "You must be a collaborator to edit this wiki."
+    authorize! :edit, Wiki, message: "You do not have sufficient privileges to edit this wiki."
 
     @wiki = Wiki.find(params[:id])
     

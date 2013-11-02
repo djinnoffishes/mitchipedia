@@ -4,7 +4,21 @@
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 
 
-    <br />
+    <br / >
+    <% if resource.errors.messages[:name] %>
+      <div class="has-error">
+        <%= f.label :name, class: "control-label" %>
+        <%= f.email_field :name, class: "form-control", :autofocus => true %>
+        Email
+        <%= resource.errors.messages[:name].first %><br />
+      </div>
+    <% else %>
+      <div>
+        <%= f.label :name %><br />
+        <%= f.email_field :name, class: "form-control", :autofocus => true %><br />
+      </div>
+    <% end %>  
+
     <% if resource.errors.messages[:email] %>
       <div class="has-error">
         <%= f.label :email, class: "control-label" %>
@@ -15,7 +29,7 @@
     <% else %>
       <div>
         <%= f.label :email %><br />
-        <%= f.email_field :email, class: "form-control", :autofocus => true %><br />
+        <%= f.email_field :email, class: "form-control" %><br />
       </div>
     <% end %>
 

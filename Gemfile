@@ -53,7 +53,6 @@ gem 'cancan'
 
 # for markdown syntax and editing
 gem 'redcarpet'
-gem 'rails-bootstrap-markdown'
 
 # for pagination
 gem 'will_paginate'

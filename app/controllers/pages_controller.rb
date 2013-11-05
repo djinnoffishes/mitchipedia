@@ -2,18 +2,33 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    @page.wiki = @wiki
   end
 
   def new
     @wiki = Wiki.find(params[:wiki_id])
     @page = Page.new
+
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, @wiki
+    add_breadcrumb "New", :new_wiki_page_path
+  end
+
+  def index
+    @wiki = Wiki.find(params[:wiki_id])
+    @pages = @wiki.pages.paginate(page: params[:page], per_page: 7)
+
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, @wiki
+    add_breadcrumb "Pages", :wiki_pages_path
   end
 
   def create
     @wiki = Wiki.find(params[:wiki_id])
     @page = Page.new(page_params)
+    @page.wiki = @wiki
 
-    if @page.save 
+    if @page.save
       flash[:notice] = "Page created."
       redirect_to wiki_path(id: params[:wiki_id])
     else

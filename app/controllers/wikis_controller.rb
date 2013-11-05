@@ -1,7 +1,6 @@
 class WikisController < ApplicationController
 
   def index
-    # TODO: scope to visible_to current user
     @wikis = Wiki.visible_to(current_user).paginate(page: params[:page], per_page: 7)
     add_breadcrumb "My wix", :wikis_path
   end

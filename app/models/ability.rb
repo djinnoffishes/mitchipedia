@@ -7,6 +7,7 @@ class Ability
 
     # member - can create/manage their own wikis and pages
     if user.role? :member
+      can :manage, Wiki, owner_id: user.id
       user.collaborators.each do |c|
         if c.access_level == 2
           can :edit, Wiki, id: c.wiki_id
@@ -20,7 +21,6 @@ class Ability
           return
         end
       end
-      can :manage, Wiki, owner_id: user.id
     elsif user.role? :admin
       can :manage, :all
     else

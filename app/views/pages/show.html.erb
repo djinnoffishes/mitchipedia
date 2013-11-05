@@ -1,14 +1,4 @@
-
-<div class="wiki-nav">
-  <div class="btn-group btn-group-justified">
-    <ul class="dropdown-menu">
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">Infrastructure</a></li>
-    </ul>  
-  </div>
-</div>
-
-
+<%= render_breadcrumbs :separator => ' / ' %>
 <h2><%= @page.title %></h2>
 <div class="wiki-links">
   <span><%= link_to new_wiki_page_path(@wiki), class: 'glyphicon glyphicon-file', alt: "New page" do %>

@@ -1,0 +1,8 @@
+<%= render_breadcrumbs :separator => ' / ' %>
+<h2>Pages</h2>
+<ul class="wiki-nav list-group">
+  <% @pages.each do |p| %>
+    <li class="list-group-item"><%= link_to p.title, wiki_page_path(p.wiki_id, p.id) %></li>
+  <% end %>
+</ul>
+<%= will_paginate @pages, renderer: BootstrapPagination::Rails, bootstrap: 3 %>

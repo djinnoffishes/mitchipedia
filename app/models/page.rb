@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
 
-  belongs_to :wikis
+  belongs_to :wiki
 
   has_many :users
 

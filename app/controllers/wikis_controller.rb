@@ -28,17 +28,18 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     
-    authorize! :read, Wiki, message: "You don't have permission to do that."
+    authorize! :read, @wiki, message: "You don't have permission to do that."
 
     add_breadcrumb "My wix", :wikis_path
     add_breadcrumb @wiki.title, :wiki_path
   end
 
   def edit
-    authorize! :edit, Wiki, message: "You do not have sufficient privileges to edit this wiki."
 
     @wiki = Wiki.find(params[:id])
     
+    authorize! :edit, @wiki, message: "You do not have sufficient privileges to edit this wiki."
+
     add_breadcrumb "My wix", :wikis_path
     add_breadcrumb @wiki.title, :wiki_path
     add_breadcrumb "Edit", :edit_wiki_path
@@ -47,7 +48,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
 
-    authorize! :update, Wiki, message: "You don't have permission to update this wiki."
+    authorize! :update, @wiki, message: "You don't have permission to update this wiki."
 
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki updated."

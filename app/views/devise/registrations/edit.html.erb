@@ -8,14 +8,14 @@
     <% if resource.errors.messages[:name] %>
       <div class="has-error">
         <%= f.label :name, class: "control-label" %>
-        <%= f.email_field :name, class: "form-control", :autofocus => true %>
+        <%= f.text_field :name, class: "form-control", :autofocus => true %>
         Email
         <%= resource.errors.messages[:name].first %><br />
       </div>
     <% else %>
       <div>
         <%= f.label :name %><br />
-        <%= f.email_field :name, class: "form-control", :autofocus => true %><br />
+        <%= f.text_field :name, class: "form-control", :autofocus => true %><br />
       </div>
     <% end %>  
 

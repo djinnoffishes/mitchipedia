@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.wiki = @wiki
 
-    authorize! :read, @wiki, message: "You don't have permission to do that."
+    # authorize! :read, @wiki, message: "You don't have permission to do that."
   end
 
   def new

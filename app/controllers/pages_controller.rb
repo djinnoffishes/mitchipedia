@@ -2,9 +2,13 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
-    @page.wiki = @wiki
+    @wiki = Wiki.find(@page.wiki)
 
-    # authorize! :read, @wiki, message: "You don't have permission to do that."
+    authorize! :read, @wiki, message: "You don't have permission to do that."
+
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, @wiki
+    add_breadcrumb @page.title, wiki_page_path
   end
 
   def new
@@ -47,9 +51,29 @@ class PagesController < ApplicationController
   end
 
   def edit
+    @page = Page.find(params[:id])
+    @wiki = Wiki.find(@page.wiki)
+
+    authorize! :edit, @wiki, message: "You do not have sufficient privileges to edit this page."
+
+    add_breadcrumb "My wix", :wikis_path
+    add_breadcrumb @wiki.title, @wiki
+    add_breadcrumb @page.title, :wiki_page_path
   end
 
   def update
+    @page = Page.find(params[:id])
+    @wiki = Wiki.find(params[:wiki_id])
+
+    authorize! :edit, @wiki, message: "You don't have permission to update this wiki."
+
+    if @page.update_attributes(page_params)
+      flash[:notice] = "Page updated."
+      redirect_to wiki_path(id: params[:wiki_id])
+    else
+      flash[:error] = "There was an error updating the wiki. Please try again."
+      render :edit
+    end
   end
 
   def destroy
@@ -70,7 +94,7 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:title, :body, :id, :wiki_id)
+    params.require(:page).permit(:title, :body)
   end
 
 end
